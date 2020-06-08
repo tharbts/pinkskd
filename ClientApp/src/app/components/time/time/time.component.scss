@@ -1,0 +1,13 @@
+@import 'mdb';
+
+input{
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  width: 100%;
+  color: white;
+  @include responsive-font-size(3rem);
+  &:focus{
+    outline: none;
+  }
+}
