@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-12 text-center">
       <input [(ngModel)]="time" placeholder="HH:MM" class="mt-5" readonly [ngxTimepicker]="timePicker" [format]="24">
-      <ngx-material-timepicker #timePicker [theme]="darkTheme"></ngx-material-timepicker>
-      <button mdbBtn mdbWavesEffect *ngIf="time" size="sm" type="button" color="pink" (click)="clearTime()">
-        <mdb-icon fas icon="eraser"></mdb-icon>
+      <ngx-material-timepicker #timePicker [theme]="darkTheme" (timeSet)="stopInterval()"></ngx-material-timepicker>
+      <button mdbBtn mdbWavesEffect *ngIf="!interval" size="sm" type="button" color="pink" (click)="startInterval()">
+        <mdb-icon far icon="clock"></mdb-icon>
       </button>
     </div>
   </div>

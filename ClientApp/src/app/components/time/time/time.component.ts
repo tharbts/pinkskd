@@ -7,31 +7,59 @@ import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
   styleUrls: ['./time.component.scss']
 })
 export class TimeComponent implements OnInit {
-  time;
-
-  darkTheme: NgxMaterialTimepickerTheme = {
-    container: {
-      bodyBackgroundColor: '#424242',
-      buttonColor: '#fff'
-    },
-    dial: {
-      dialBackgroundColor: '#555',
-    },
-    clockFace: {
-      clockFaceBackgroundColor: '#555',
-      clockHandColor: '#ec407a',
-      clockFaceTimeInactiveColor: '#fff'
-    }
-  };
+  time: string;
+  interval: any;
+  darkTheme: NgxMaterialTimepickerTheme;
 
   constructor() {
+    this.setTheme();
   }
 
   ngOnInit(): void {
+    this.startInterval();
   }
 
-  clearTime(){
-    this.time = null;
+  startInterval(){
+    this.time = this.getCurrentHourMin();
+    this.interval = setInterval(() => {
+      this.time = this.getCurrentHourMin();
+    }, this.getMs());
+  }
+
+  stopInterval(){
+    clearInterval(this.interval);
+    this.interval = null;
+  }
+
+  getCurrentHourMin(){
+    var date = new Date();
+    return date.getHours() + ":" + date.getMinutes();
+  }
+
+  getMs(){
+    if(!this.interval){
+      var date = new Date();
+      return 60000 - ((date.getSeconds() * 1000) + date.getMilliseconds());
+    }
+
+    return 60000;
+  }
+
+  setTheme(){
+    this.darkTheme = {
+      container: {
+        bodyBackgroundColor: '#424242',
+        buttonColor: '#fff'
+      },
+      dial: {
+        dialBackgroundColor: '#555',
+      },
+      clockFace: {
+        clockFaceBackgroundColor: '#555',
+        clockHandColor: '#ec407a',
+        clockFaceTimeInactiveColor: '#fff'
+      }
+    };
   }
 
 }
