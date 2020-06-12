@@ -1,0 +1,6 @@
+.dash-divider{
+  padding: 0px .5rem;
+  &:after{
+    content: "-";
+  }
+}

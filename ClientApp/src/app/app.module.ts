@@ -12,13 +12,17 @@ import { TimeComponent } from './components/time/time/time.component';
 
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { FormsModule } from '@angular/forms';
+import { TimeListComponent } from './components/time-list/time-list/time-list.component';
+import { TimeBadgeComponent } from './components/time-badge/time-badge/time-badge.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     TimerComponent,
-    TimeComponent
+    TimeComponent,
+    TimeListComponent,
+    TimeBadgeComponent
   ],
   imports: [
     BrowserModule,

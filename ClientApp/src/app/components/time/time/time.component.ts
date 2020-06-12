@@ -1,5 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 
 @Component({
   selector: 'app-time',
@@ -9,7 +8,7 @@ import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 export class TimeComponent implements OnInit {
   time: string;
   interval: any;
-  darkTheme: NgxMaterialTimepickerTheme;
+  darkTheme: any;
 
   constructor() {
     this.setTheme();

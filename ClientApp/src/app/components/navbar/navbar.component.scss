@@ -1,6 +1,8 @@
 @import 'variables';
+@import 'mdb';
 
 nav{
+    @extend .z-depth-1;
     text-align: center;
     color: white;
     background-color: $dark-color;
