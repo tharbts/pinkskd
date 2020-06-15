@@ -1,3 +1,4 @@
+import { TimeService } from './../../../services/time.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,13 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit {
-
+  public time: string;
   public started: boolean = false;
 
-  constructor() { }
+  constructor(private timeService: TimeService) {
+    timeService.currentTime.subscribe(time => this.time = time);
+  }
 
   changeStatus(){
     this.started = !this.started;
+    this.timeService.currentTime.subscribe(time => this.time = time);
   }
 
   ngOnInit(): void {

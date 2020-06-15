@@ -1,3 +1,4 @@
+import { TimeService } from './../../../services/time.service';
 import { Component, OnInit} from '@angular/core';
 
 @Component({
@@ -10,7 +11,7 @@ export class TimeComponent implements OnInit {
   interval: any;
   darkTheme: any;
 
-  constructor() {
+  constructor(private timeService: TimeService) {
     this.setTheme();
   }
 
@@ -20,8 +21,10 @@ export class TimeComponent implements OnInit {
 
   startInterval(){
     this.time = this.getCurrentHourMin();
+    this.setTimeService();
     this.interval = setInterval(() => {
       this.time = this.getCurrentHourMin();
+      this.setTimeService();
     }, this.getMs());
   }
 
@@ -42,6 +45,10 @@ export class TimeComponent implements OnInit {
     }
 
     return 60000;
+  }
+
+  setTimeService(){
+    this.timeService.setTime(this.time);
   }
 
   setTheme(){
