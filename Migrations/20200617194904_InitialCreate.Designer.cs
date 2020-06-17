@@ -8,8 +8,8 @@ using pinkskd.Persistence;
 
 namespace pinkskd.Migrations
 {
-    [DbContext(typeof(PinkSkdDbContext))]
-    [Migration("20200616192934_InitialCreate")]
+    [DbContext(typeof(DatabaseContext))]
+    [Migration("20200617194904_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,8 @@ namespace pinkskd.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Note")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(255);
+                    b.Property<DateTime>("lastUpdate")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -49,7 +48,7 @@ namespace pinkskd.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("ScheduleId")
+                    b.Property<int>("ScheduleId")
                         .HasColumnType("INTEGER");
 
                     b.Property<TimeSpan>("Start")
@@ -66,7 +65,9 @@ namespace pinkskd.Migrations
                 {
                     b.HasOne("pinkskd.Models.Schedule", null)
                         .WithMany("Times")
-                        .HasForeignKey("ScheduleId");
+                        .HasForeignKey("ScheduleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

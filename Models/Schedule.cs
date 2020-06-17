@@ -11,14 +11,13 @@ namespace pinkskd.Models
     {
         public int Id { get; set; }
 
-        [StringLength(255)]
-        public string Note { get; set; }
-
         [Required]
         public DateTime Date { get; set; }
 
         [Required]
         public ICollection<Time> Times { get; set; }
+
+        public DateTime lastUpdate { get; set; }
 
         public Schedule()
         {

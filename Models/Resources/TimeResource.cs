@@ -2,23 +2,16 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace pinkskd.Models
+namespace pinkskd.Models.Resource
 {
-    [Table("Times")]
-    public class Time
+    public class TimeResource
     {
         public int Id { get; set; }
 
-        [Required]
         public TimeSpan Start { get; set; }
 
         public TimeSpan End { get; set; }
 
-        [StringLength(255)]
         public string Note { get; set; }
-
-        [Required]
-        public int ScheduleId { get; set; }
-
     }
 }

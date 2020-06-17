@@ -3,7 +3,7 @@ using pinkskd.Models;
 
 namespace pinkskd.Persistence
 {
-    public class PinkSkdDbContext : DbContext
+    public class DatabaseContext : DbContext
     {
         public DbSet<Schedule> Schedules { get; set; }
 

@@ -13,8 +13,8 @@ namespace pinkskd.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Note = table.Column<string>(maxLength: 255, nullable: true),
-                    Date = table.Column<DateTime>(nullable: false)
+                    Date = table.Column<DateTime>(nullable: false),
+                    lastUpdate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,7 +30,7 @@ namespace pinkskd.Migrations
                     Start = table.Column<TimeSpan>(nullable: false),
                     End = table.Column<TimeSpan>(nullable: false),
                     Note = table.Column<string>(maxLength: 255, nullable: true),
-                    ScheduleId = table.Column<int>(nullable: true)
+                    ScheduleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,7 @@ namespace pinkskd.Migrations
                         column: x => x.ScheduleId,
                         principalTable: "Schedules",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
