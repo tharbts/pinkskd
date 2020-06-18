@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using pinkskd.Models;
@@ -16,11 +18,12 @@ namespace pinkskd.Persistence
             this.context = context;
         }
 
-        public async Task<ICollection<Schedule>> GetSchedules()
+        public async Task<ICollection<Schedule>> GetSchedules(DateTime? date)
         {
-            return await context.Schedules
-                .Include(s => s.Times)
-                .ToListAsync();
+            if(date == null)
+                return await context.Schedules.Include(s => s.Times).ToListAsync();
+
+            return await context.Schedules.Where(s => s.Date == date).Include(s => s.Times).ToListAsync();
         }
 
         public async Task<Schedule> GetSchedule(int id)

@@ -14,6 +14,8 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { FormsModule } from '@angular/forms';
 import { TimeListComponent } from './components/time-list/time-list/time-list.component';
 import { TimeBadgeComponent } from './components/time-badge/time-badge/time-badge.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ModalComponent } from './components/modal/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import { TimeBadgeComponent } from './components/time-badge/time-badge/time-badg
     TimerComponent,
     TimeComponent,
     TimeListComponent,
-    TimeBadgeComponent
+    TimeBadgeComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MDBBootstrapModule,
+    MDBBootstrapModule.forRoot(),
     NgxMaterialTimepickerModule,
     FormsModule
   ],

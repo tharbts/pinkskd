@@ -1,0 +1,17 @@
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100">Are you sure?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" mdbBtn size="sm" outline="true" color="pink" class="waves-light" (click)="onNoClick()" mdbWavesEffect>
+                    <mdb-icon fas icon="times"></mdb-icon>
+                </button>
+                <button type="button" mdbBtn size="sm" color="pink" class="relative waves-light" (click)="onYesClick()" mdbWavesEffect>
+                    <mdb-icon fas icon="check"></mdb-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

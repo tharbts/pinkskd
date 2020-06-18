@@ -1,45 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { time } from 'src/app/models/time';
+import { ModalComponent } from './../../modal/modal/modal.component';
+import { ScheduleService } from './../../../services/schedule.service';
+import { Schedule } from '../../../models/Schedule';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-time-list',
-  templateUrl: './time-list.component.html',
-  styleUrls: ['./time-list.component.scss']
+    selector: 'app-time-list',
+    templateUrl: './time-list.component.html',
+    styleUrls: ['./time-list.component.scss']
 })
 export class TimeListComponent implements OnInit {
 
-  list: time[];
+    @Input() date: Date;
+    @ViewChild('dialog') dialog: ModalComponent;
+    schedule: Schedule = {
+        id: 0,
+        date: new Date(),
+        times: []
+    };
 
-  constructor() {
-    this.fillList();
-   }
+    constructor(private scheduleService: ScheduleService) {
+        this.getSchedules('06-17-2020');
+    }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-  }
+    }
 
-  delete(index:number){
-    this.list.splice(index, 1);
-  }
+    deleteTime(id: number){
+        this.dialog.show();
+        //this.schedule.times = this.schedule.times.filter(t => t.id != id);
+    }
 
-  updateTime(index:number, prop:string, time:string){
-    this.list[index][prop] = time;
-  }
-
-  fillList(){
-    this.list = [
-      {
-        id: 1,
-        start: "08:00",
-        end: "09:00",
-        notes:""
-      },
-      {
-        id: 2,
-        start: "11:00",
-        end: "12:00",
-        notes:""
-      }
-    ]
-  }
+    getSchedules(date?: string) {
+        this.scheduleService.getSchedules(date).subscribe(schedule => {
+            this.schedule = schedule[0]
+        });
+    }
 }

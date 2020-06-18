@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using pinkskd.Models;
@@ -9,7 +10,7 @@ namespace pinkskd.Persistence.Interface
         void Add(Schedule schedule);
         Task<Schedule> GetSchedule(int id);
 
-        Task<ICollection<Schedule>> GetSchedules();
+        Task<ICollection<Schedule>> GetSchedules(DateTime? date);
 
         void Remove(Schedule schedule);
     }

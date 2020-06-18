@@ -24,9 +24,9 @@ namespace pinkskd.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSchedules()
+        public async Task<IActionResult> GetSchedules(DateTime? date)
         {
-            var schedules = await repository.GetSchedules();
+            var schedules = await repository.GetSchedules(date);
 
             var schedulesResource = mapper.Map<List<ScheduleResource>>(schedules);
 
@@ -60,7 +60,7 @@ namespace pinkskd.Controllers
 
             mapper.Map<Schedule, ScheduleResource>(schedule, scheduleResource);
 
-            return Ok();
+            return Ok(scheduleResource);
         }
 
         [HttpPut("{id}")]
@@ -74,7 +74,9 @@ namespace pinkskd.Controllers
 
             await uow.CompleteAsync();
 
-            return Ok();
+            mapper.Map<Schedule, ScheduleResource>(scheduleFromDb, scheduleResource);
+
+            return Ok(scheduleResource);
         }
 
         [HttpDelete("{id}")]

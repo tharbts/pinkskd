@@ -1,17 +1,18 @@
 <ul>
-  <li *ngFor="let time of list; index as index">
-    <div class="times">
-      <app-time-badge time="{{time.start}}" (timeSet)="updateTime(index,'start', $event)"></app-time-badge>
-      <span class="dash-divider"></span>
-      <app-time-badge time="{{time.end}}" (timeSet)="updateTime(index, 'end', $event)"></app-time-badge>
-    </div>
-    <div class="icons">
-      <button mdbBtn type="button" color="pink" mdbWavesEffect>
-        <mdb-icon far icon="sticky-note"></mdb-icon>
-      </button>
-      <button mdbBtn type="button" color="pink" mdbWavesEffect (click)="delete(index)">
-        <mdb-icon far icon="trash-alt"></mdb-icon>
-      </button>
-    </div>
-  </li>
+    <li *ngFor="let time of schedule.times; index as index">
+        <div class="times">
+            <app-time-badge time="{{time.start.substr(0, 5)}}"></app-time-badge>
+            <span class="dash-divider"></span>
+            <app-time-badge time="{{time.end.substr(0, 5)}}"></app-time-badge>
+        </div>
+        <div class="icons">
+            <button mdbBtn type="button" color="pink" mdbWavesEffect>
+                <mdb-icon far icon="sticky-note"></mdb-icon>
+            </button>
+            <button mdbBtn type="button" color="pink" mdbWavesEffect (click)="deleteTime(time.id)">
+                <mdb-icon far icon="trash-alt"></mdb-icon>
+            </button>
+        </div>
+    </li>
 </ul>
+<app-modal #dialog></app-modal>
