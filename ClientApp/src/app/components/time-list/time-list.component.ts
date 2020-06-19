@@ -1,6 +1,6 @@
-import { ModalComponent } from './../../modal/modal/modal.component';
-import { ScheduleService } from './../../../services/schedule.service';
-import { Schedule } from '../../../models/Schedule';
+import { DialogComponent } from '../dialog/dialog.component';
+import { ScheduleService } from '../../services/schedule.service';
+import { Schedule } from '../../models/Schedule';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 @Component({
@@ -11,7 +11,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 export class TimeListComponent implements OnInit {
 
     @Input() date: Date;
-    @ViewChild('dialog') dialog: ModalComponent;
+    @ViewChild('confirmDeleteDialog') confirmDeleteDialog: DialogComponent;
     schedule: Schedule = {
         id: 0,
         date: new Date(),
@@ -27,11 +27,17 @@ export class TimeListComponent implements OnInit {
     }
 
     deleteTime(id: number){
-        this.dialog.show();
-        //this.schedule.times = this.schedule.times.filter(t => t.id != id);
+        this.confirmDeleteDialog.show((userAnswer) =>{
+            if(userAnswer){
+                this.schedule.times = this.schedule.times.filter(t => t.id != id);
+            }
+        });
     }
 
     getSchedules(date?: string) {
+        if(!date)
+            date = new Date().toISOString().slice(0,10);
+
         this.scheduleService.getSchedules(date).subscribe(schedule => {
             this.schedule = schedule[0]
         });

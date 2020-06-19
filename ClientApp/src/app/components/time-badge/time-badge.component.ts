@@ -1,4 +1,4 @@
-import { NgxMaterialTimepickerDarkTheme } from './../../../models/NgxMaterialTimepickerDarkTheme';
+import { NgxMaterialTimepickerDarkTheme } from '../../models/NgxMaterialTimepickerDarkTheme';
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 

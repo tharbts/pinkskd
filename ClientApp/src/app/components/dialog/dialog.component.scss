@@ -1,0 +1,15 @@
+@import "variables";
+
+.modal-content{
+    color: white;
+    background-color: $dark-color;
+
+    .modal-header{
+        border: none;
+    }
+
+    .modal-footer{
+        border-top: 1px solid lighten($dark-color, 5%);
+        padding: .15rem;
+    }
+}
