@@ -63,14 +63,15 @@ namespace pinkskd.Controllers
             return Ok(scheduleResource);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSchedule(int id, [FromBody] ScheduleResource scheduleResource)
+        [HttpPut]
+        public async Task<IActionResult> UpdateSchedule([FromBody] ScheduleResource scheduleResource)
         {
-            var scheduleFromDb = await repository.GetSchedule(id);
+            var scheduleFromDb = await repository.GetSchedule(scheduleResource.Id);
             if(scheduleFromDb == null)
                 return NotFound();
 
             mapper.Map<ScheduleResource, Schedule>(scheduleResource, scheduleFromDb);
+            scheduleFromDb.lastUpdate = DateTime.Now;
 
             await uow.CompleteAsync();
 

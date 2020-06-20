@@ -26,17 +26,27 @@ export class TimeListComponent implements OnInit {
 
     }
 
-    deleteTime(id: number){
-        this.confirmDeleteDialog.show((userAnswer) =>{
-            if(userAnswer){
+    deleteTime(id: number) {
+        this.confirmDeleteDialog.show((userAnswer) => {
+            if (userAnswer) {
                 this.schedule.times = this.schedule.times.filter(t => t.id != id);
+                this.updateSchedule();
             }
         });
     }
 
+    updateTime(index: number, prop: string, time: string) {
+        this.schedule.times[index][prop] = time;
+        this.updateSchedule();
+    }
+
+    updateSchedule() {
+        this.scheduleService.updateSchedule(this.schedule).subscribe();
+    }
+
     getSchedules(date?: string) {
-        if(!date)
-            date = new Date().toISOString().slice(0,10);
+        if (!date)
+            date = new Date().toISOString().slice(0, 10);
 
         this.scheduleService.getSchedules(date).subscribe(schedule => {
             this.schedule = schedule[0]

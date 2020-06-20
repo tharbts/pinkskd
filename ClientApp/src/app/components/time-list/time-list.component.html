@@ -1,9 +1,9 @@
 <ul>
     <li *ngFor="let time of schedule.times; index as index">
         <div class="times">
-            <app-time-badge time="{{time.start.substr(0, 5)}}"></app-time-badge>
+            <app-time-badge time="{{time.start.substr(0, 5)}}" (timeSet)="updateTime(index,'start', $event)"></app-time-badge>
             <span class="dash-divider"></span>
-            <app-time-badge time="{{time.end.substr(0, 5)}}"></app-time-badge>
+            <app-time-badge time="{{time.end.substr(0, 5)}}" (timeSet)="updateTime(index,'end', $event)"></app-time-badge>
         </div>
         <div class="icons">
             <button mdbBtn type="button" color="pink" mdbWavesEffect>

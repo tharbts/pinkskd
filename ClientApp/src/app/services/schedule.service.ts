@@ -14,4 +14,8 @@ export class ScheduleService {
     getSchedules(date: string) {
         return this.http.get<Schedule[]>(this.endpoint + '?date=' + date);
     }
+
+    updateSchedule(schedule: Schedule){
+        return this.http.put(this.endpoint, schedule);
+    }
 }
