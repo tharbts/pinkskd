@@ -10,16 +10,11 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TimerComponent } from './components/timer/timer/timer.component';
 import { TimeComponent } from './components/time/time/time.component';
-import { TimeBadgeComponent } from './components/time-badge/time-badge.component';
+import { TimeBadgeComponent } from './components/time-list/time-badge/time-badge.component';
 import { TimeListComponent } from './components/time-list/time-list.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-
-
-
-
-
 
 @NgModule({
   declarations: [

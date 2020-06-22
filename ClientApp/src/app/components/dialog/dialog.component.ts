@@ -12,12 +12,13 @@ export class DialogComponent implements OnInit {
     private callback: Function;
 
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit(): void {
     }
 
-    show(callback:Function){
+    show(callback: Function) {
         this.callback = callback;
         this.modal.show();
     }

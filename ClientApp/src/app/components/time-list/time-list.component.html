@@ -1,12 +1,14 @@
 <ul>
     <li *ngFor="let time of schedule.times; index as index">
         <div class="times">
-            <app-time-badge time="{{time.start.substr(0, 5)}}" (timeSet)="updateTime(index,'start', $event)"></app-time-badge>
+            <app-time-badge time="{{time.start.substr(0, 5)}}" (timeSet)="updateTime(index,'start', $event)">
+            </app-time-badge>
             <span class="dash-divider"></span>
-            <app-time-badge time="{{time.end.substr(0, 5)}}" (timeSet)="updateTime(index,'end', $event)"></app-time-badge>
+            <app-time-badge time="{{time.end.substr(0, 5)}}" (timeSet)="updateTime(index,'end', $event)">
+            </app-time-badge>
         </div>
         <div class="icons">
-            <button mdbBtn type="button" color="pink" mdbWavesEffect>
+            <button mdbBtn type="button" color="pink" mdbWavesEffect (click)="addNote(time.id)">
                 <mdb-icon far icon="sticky-note"></mdb-icon>
             </button>
             <button mdbBtn type="button" color="pink" mdbWavesEffect (click)="deleteTime(time.id)">
@@ -15,4 +17,12 @@
         </div>
     </li>
 </ul>
-<app-dialog #confirmDeleteDialog></app-dialog>
+<app-dialog #notesDialog>
+    <div body class="md-form py-2 mb-0">
+        <textarea [(ngModel)]="note" maxlength="255" type="text" id="note" class="md-textarea form-control" mdbInput></textarea>
+        <label for="note">Your Note</label>
+    </div>
+</app-dialog>
+<app-dialog #confirmDeleteDialog>
+    <span title>Are you sure?</span>
+</app-dialog>

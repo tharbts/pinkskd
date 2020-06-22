@@ -8,6 +8,16 @@
         border: none;
     }
 
+    .modal-body{
+        border: none;
+        padding: 0;
+        color: white;
+        &:not(:empty){
+            border-top: 1px solid lighten($dark-color, 5%);
+            padding: 0 16px;
+        }
+    }
+
     .modal-footer{
         border-top: 1px solid lighten($dark-color, 5%);
         padding: .15rem;

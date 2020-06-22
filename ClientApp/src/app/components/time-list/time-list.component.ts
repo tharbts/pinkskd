@@ -1,7 +1,7 @@
 import { DialogComponent } from '../dialog/dialog.component';
 import { ScheduleService } from '../../services/schedule.service';
 import { Schedule } from '../../models/Schedule';
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'app-time-list',
@@ -12,6 +12,9 @@ export class TimeListComponent implements OnInit {
 
     @Input() date: Date;
     @ViewChild('confirmDeleteDialog') confirmDeleteDialog: DialogComponent;
+    @ViewChild('notesDialog') notesDialog: DialogComponent;
+    note:string;
+
     schedule: Schedule = {
         id: 0,
         date: new Date(),
@@ -22,14 +25,24 @@ export class TimeListComponent implements OnInit {
         this.getSchedules('06-17-2020');
     }
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     deleteTime(id: number) {
         this.confirmDeleteDialog.show((userAnswer) => {
             if (userAnswer) {
                 this.schedule.times = this.schedule.times.filter(t => t.id != id);
+                this.updateSchedule();
+            }
+        });
+    }
+
+    addNote(id: number){
+        var index = this.schedule.times.findIndex( t => t.id == id);
+        this.note = this.schedule.times[index].note;
+
+        this.notesDialog.show((userAnswer) => {
+            if (userAnswer) {
+                this.schedule.times[index].note = this.note;
                 this.updateSchedule();
             }
         });
@@ -49,7 +62,7 @@ export class TimeListComponent implements OnInit {
             date = new Date().toISOString().slice(0, 10);
 
         this.scheduleService.getSchedules(date).subscribe(schedule => {
-            this.schedule = schedule[0]
+            this.schedule = schedule[1]
         });
     }
 }
