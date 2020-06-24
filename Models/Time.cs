@@ -10,11 +10,13 @@ namespace pinkskd.Models
         public int Id { get; set; }
 
         [Required]
-        public TimeSpan Start { get; set; }
+        [StringLength(5)]
+        public string Start { get; set; }
 
-        public TimeSpan End { get; set; }
+        [StringLength(5)]
+        public string End { get; set; }
 
-        [StringLength(255)]
+        [StringLength(120)]
         public string Note { get; set; }
 
         [Required]

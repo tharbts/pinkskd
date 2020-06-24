@@ -27,9 +27,9 @@ namespace pinkskd.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Start = table.Column<TimeSpan>(nullable: false),
-                    End = table.Column<TimeSpan>(nullable: false),
-                    Note = table.Column<string>(maxLength: 255, nullable: true),
+                    Start = table.Column<string>(maxLength: 5, nullable: false),
+                    End = table.Column<string>(maxLength: 5, nullable: true),
+                    Note = table.Column<string>(maxLength: 120, nullable: true),
                     ScheduleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

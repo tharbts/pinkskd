@@ -1,7 +1,8 @@
+import { ISchedule } from './../interfaces/ISchedule';
 import { Time } from './Time';
 
-export interface Schedule {
+export class Schedule implements ISchedule {
     id: number;
-    date: Date;
-    times: Time[]
+    date: Date = new Date();
+    times: Time[] = [];
 }

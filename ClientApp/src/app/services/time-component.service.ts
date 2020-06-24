@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class TimeComponentService {
   private timeSource = new BehaviorSubject<string>("");
-  currentTime = this.timeSource.asObservable();
+  public currentTime = this.timeSource.asObservable();
 
   constructor() { }
 

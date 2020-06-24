@@ -8,9 +8,9 @@ namespace pinkskd.Models.Resource
     {
         public int Id { get; set; }
 
-        public TimeSpan Start { get; set; }
+        public string Start { get; set; }
 
-        public TimeSpan End { get; set; }
+        public string End { get; set; }
 
         public string Note { get; set; }
     }

@@ -9,7 +9,7 @@ using pinkskd.Persistence;
 namespace pinkskd.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200617194904_InitialCreate")]
+    [Migration("20200624203631_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,18 +41,21 @@ namespace pinkskd.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<TimeSpan>("End")
-                        .HasColumnType("TEXT");
+                    b.Property<string>("End")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
 
                     b.Property<string>("Note")
                         .HasColumnType("TEXT")
-                        .HasMaxLength(255);
+                        .HasMaxLength(120);
 
                     b.Property<int>("ScheduleId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<TimeSpan>("Start")
-                        .HasColumnType("TEXT");
+                    b.Property<string>("Start")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
 
                     b.HasKey("Id");
 

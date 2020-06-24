@@ -1,5 +1,13 @@
 <label>
-  <mdb-badge pill="true" color="pink"> {{time}} </mdb-badge>
+  <mdb-badge pill="true" color="pink">
+      <span *ngIf="time; else defaultTime">
+        {{time}}
+      </span>
+
+      <ng-template #defaultTime>
+        <mdb-icon far icon="clock"></mdb-icon>
+      </ng-template>
+  </mdb-badge>
   <input type="text" readonly [ngxTimepicker]="timePicker" [value]="time" [format]="24">
   <ngx-material-timepicker #timePicker [theme]="timepickerDarkTheme" (timeSet)="triggerTimeSet($event)"></ngx-material-timepicker>
 </label>

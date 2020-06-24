@@ -1,7 +1,7 @@
 import { DialogComponent } from '../dialog/dialog.component';
 import { ScheduleService } from '../../services/schedule.service';
-import { Schedule } from '../../models/Schedule';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Schedule } from 'src/app/models/Schedule';
 
 @Component({
     selector: 'app-time-list',
@@ -14,15 +14,14 @@ export class TimeListComponent implements OnInit {
     @ViewChild('confirmDeleteDialog') confirmDeleteDialog: DialogComponent;
     @ViewChild('notesDialog') notesDialog: DialogComponent;
     note:string;
-
-    schedule: Schedule = {
-        id: 0,
-        date: new Date(),
-        times: []
-    };
+    schedule:Schedule;
+    query: any;
 
     constructor(private scheduleService: ScheduleService) {
-        this.getSchedules('06-17-2020');
+        scheduleService.currentSchedule.subscribe(schedule => {
+            if(schedule)
+                this.schedule = schedule;
+        });
     }
 
     ngOnInit(): void {}
@@ -55,14 +54,5 @@ export class TimeListComponent implements OnInit {
 
     updateSchedule() {
         this.scheduleService.updateSchedule(this.schedule).subscribe();
-    }
-
-    getSchedules(date?: string) {
-        if (!date)
-            date = new Date().toISOString().slice(0, 10);
-
-        this.scheduleService.getSchedules(date).subscribe(schedule => {
-            this.schedule = schedule[1]
-        });
     }
 }

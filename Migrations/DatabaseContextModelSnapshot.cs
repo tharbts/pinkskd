@@ -39,18 +39,21 @@ namespace pinkskd.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<TimeSpan>("End")
-                        .HasColumnType("TEXT");
+                    b.Property<string>("End")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
 
                     b.Property<string>("Note")
                         .HasColumnType("TEXT")
-                        .HasMaxLength(255);
+                        .HasMaxLength(120);
 
                     b.Property<int>("ScheduleId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<TimeSpan>("Start")
-                        .HasColumnType("TEXT");
+                    b.Property<string>("Start")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
 
                     b.HasKey("Id");
 

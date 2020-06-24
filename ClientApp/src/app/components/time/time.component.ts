@@ -1,5 +1,5 @@
-import { NgxMaterialTimepickerDarkTheme } from './../../../models/NgxMaterialTimepickerDarkTheme';
-import { TimeComponentService } from '../../../services/time-component.service';
+import { NgxMaterialTimepickerDarkTheme } from './../../models/NgxMaterialTimepickerDarkTheme';
+import { TimeComponentService } from '../../services/time-component.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -34,7 +34,7 @@ export class TimeComponent implements OnInit {
 
     getCurrentHourMin() {
         var date = new Date();
-        return date.getHours() + ":" + date.getMinutes();
+        return date.getHours().toString().padStart(2, '0') + ":" + date.getMinutes().toString().padStart(2, '0');
     }
 
     getMs() {
