@@ -15,6 +15,9 @@
                 <mdb-icon far icon="trash-alt"></mdb-icon>
             </button>
         </div>
+        <div class="notes" *ngIf="time.note">
+            {{time.note}}
+        </div>
     </li>
 </ul>
 <app-dialog #notesDialog>
